@@ -1,6 +1,6 @@
 #!/bin/bash
 
-curl -L -O https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-8.13.4-amd64.deb
+curl -L -O https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-8.14.3-amd64.deb
 dpkg -i filebeat-8.13.4-amd64.deb
 cat filebeat.yml > /etc/filebeat/filebeat.yml
 echo '[Unit]
