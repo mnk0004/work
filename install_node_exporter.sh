@@ -8,7 +8,8 @@ cp node_exporter-*.linux-amd64/node_exporter /usr/local/bin/
 rm -rf node_exporter-*.linux-amd64/ && rm -f node_exporter-*.linux-amd64.tar.gz
 cp node_exporter.service /etc/systemd/system/
 mkdir /opt/node_exporter/
-echo $PASS > /opt/node_exporter/web.yml
+echo "basic_auth_users:
+  node_exporter: $PASS" > /opt/node_exporter/web.yml
 mkdir /opt/node_exporter/textfile_collector
 systemctl daemon-reload
 systemctl restart node_exporter.service
