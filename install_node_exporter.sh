@@ -6,6 +6,9 @@ tar -zxf node_exporter-*.linux-amd64.tar.gz
 cp node_exporter-*.linux-amd64/node_exporter /usr/local/bin/
 rm -rf node_exporter-*.linux-amd64/ && rm -f node_exporter-*.linux-amd64.tar.gz
 cp node_exporter.service /etc/systemd/system/
+mkdir /opt/node_exporter/
+cp web.yml /opt/node_exporter/
+mkdir /opt/node_exporter/textfile_collector
 systemctl daemon-reload
 systemctl restart node_exporter.service
 systemctl status node_exporter.service
