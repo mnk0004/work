@@ -3,4 +3,4 @@ wget https://github.com/mnk0004/work/archive/refs/heads/main.zip && unzip main.z
 systemctl start filebeat
 
 # install node-exporter
-wget https://github.com/mnk0004/work/archive/refs/heads/main.zip && unzip main.zip && cd work-main/ && chmod +x install_node_exporter.sh && ./install_node_exporter.sh
+wget https://github.com/mnk0004/work/archive/refs/heads/main.zip && unzip main.zip && cd work-main/ && chmod +x install_node_exporter.sh && ./install_node_exporter.sh VERSION PASS
