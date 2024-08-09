@@ -15,6 +15,7 @@ mkdir /opt/node_exporter/textfile_collector
 useradd --no-create-home --shell /bin/false node_exporter
 cd ..
 rm -rf work-main
+rm main.zip*
 systemctl daemon-reload
 systemctl restart node_exporter.service
 systemctl status node_exporter.service
