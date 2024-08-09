@@ -12,6 +12,7 @@ echo "basic_auth_users:
   node_exporter: $PASS" > /opt/node_exporter/web.yml
 mkdir /opt/node_exporter/textfile_collector
 useradd --no-create-home --shell /bin/false node_exporter
+rm -rf work-main
 systemctl daemon-reload
 systemctl restart node_exporter.service
 systemctl status node_exporter.service
