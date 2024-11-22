@@ -19,6 +19,7 @@ rm -rf work-main
 rm main.zip*
 systemctl daemon-reload
 systemctl restart node_exporter.service
+systemctl enable node_exporter.service
 sleep 5
 systemctl status node_exporter.service
 node_exporter --version
