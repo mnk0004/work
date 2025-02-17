@@ -54,7 +54,6 @@ filebeat.inputs:
   fields_under_root: true
 
 - type: filestream
-
   id: $HOSTNAME_fpm_slow
   enabled: enable
   paths:
@@ -85,6 +84,15 @@ filebeat.inputs:
 #     type: laravel
 #   fields_under_root: true
 
+# - type: filestream
+#   id: $HOSTNAME_llm-gateway
+#   enabled: enable
+#   tags: ["json"]
+#   paths:
+#     - /logs/app.log
+#   fields:
+#     type: llm-gateway
+#   fields_under_root: true
 
 # ============================== Filebeat modules ==============================
 
