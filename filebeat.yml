@@ -2,97 +2,115 @@
 
 filebeat.inputs:
 
+#- type: filestream
+
+#  id: $HOSTNAME-access
+
+#  enabled: enable
+
+#  paths:
+#    - /var/log/nginx/*access.log
+#  fields:
+#    type: nginx_access
+#  fields_under_root: true
+
+#- type: filestream
+
+#  id: $HOSTNAME_err
+
+#  enabled: enable
+
+#  paths:
+#    - /var/log/nginx/*error.log
+#  fields:
+#    type: nginx_error
+#  fields_under_root: true
+
+#- type: filestream
+
+#  id: $HOSTNAME_fpm_err
+#  enabled: enable
+#  paths:
+#    - /var/log/fpm-php.www.log
+#  parsers:
+#    - multiline:
+#        type: pattern
+#        pattern: '^\['
+#        negate: true
+#        match: after
+#  fields:
+#    type: php-fpm-error
+#  fields_under_root: true
+
+#- type: filestream
+
+#  id: $HOSTNAME_fpm_warn
+#  enabled: enable
+#  paths:
+#    - /var/log/php7.4-fpm.log
+
+#  fields:
+#    type: php-fpm-warning
+#  fields_under_root: true
+
+#- type: filestream
+#  id: $HOSTNAME_fpm_slow
+#  enabled: enable
+#  paths:
+#    - /usr/log/www.log.slow
+#  parsers:
+#    - multiline:
+#        type: pattern
+#        pattern: '^\[[0-9]+-[a-zA-Z]'
+#        negate: true
+#        match: after
+#  fields:
+#    type: php-fpm-slow
+#  fields_under_root: true
+
+#- type: filestream
+
+#  id: $HOSTNAME_laravel
+#  enabled: enable
+#  paths:
+#    - /home/debian/cabinet/storage/logs/laravel.log
+#  parsers:
+#    - multiline:
+#        type: pattern
+#        pattern: '^\[[0-9]+-[0-9]+-[0-9]+'
+#        negate: true
+#        match: after
+#  fields:
+#    type: laravel
+#  fields_under_root: true
+
+#- type: filestream
+#  id: $HOSTNAME_llm-gateway
+#  enabled: enable
+#  tags: ["json"]
+#  paths:
+#    - /logs/app.log
+#  fields:
+#    type: llm-gateway
+#  fields_under_root: true
+
 - type: filestream
 
-  id: $HOSTNAME-access
-
-  enabled: enable
-
-  paths:
-    - /var/log/nginx/*access.log
-  fields:
-    type: nginx_access
-  fields_under_root: true
-
-- type: filestream
-
-  id: $HOSTNAME_err
-
-  enabled: enable
-
-  paths:
-    - /var/log/nginx/*error.log
-  fields:
-    type: nginx_error
-  fields_under_root: true
-
-- type: filestream
-
-  id: $HOSTNAME_fpm_err
+  id: $HOSTNAME_laravel
   enabled: enable
   paths:
-    - /var/log/fpm-php.www.log
+    - /root/auto-replies/logs/*.log
   parsers:
     - multiline:
         type: pattern
-        pattern: '^\['
+        pattern: '^[0-9]+-[0-9]+-[0-9]+'
         negate: true
         match: after
   fields:
-    type: php-fpm-error
+    type: bigdata
   fields_under_root: true
 
-- type: filestream
 
-  id: $HOSTNAME_fpm_warn
-  enabled: enable
-  paths:
-    - /var/log/php7.4-fpm.log
-
-  fields:
-    type: php-fpm-warning
-  fields_under_root: true
-
-- type: filestream
-  id: $HOSTNAME_fpm_slow
-  enabled: enable
-  paths:
-    - /usr/log/www.log.slow
-  parsers:
-    - multiline:
-        type: pattern
-        pattern: '^\[[0-9]+-[a-zA-Z]'
-        negate: true
-        match: after
-  fields:
-    type: php-fpm-slow
-  fields_under_root: true
-
-# - type: filestream
-
-#   id: $HOSTNAME_laravel
-#   enabled: enable
-#   paths:
-#     - /home/debian/cabinet/storage/logs/laravel.log
-#   parsers:
-#     - multiline:
-#         type: pattern
-#         pattern: '^\[[0-9]+-[0-9]+-[0-9]+'
-#         negate: true
-#         match: after
-#   fields:
-#     type: laravel
-#   fields_under_root: true
-
-# - type: filestream
-#   id: $HOSTNAME_llm-gateway
-#   enabled: enable
-#   tags: ["json"]
-#   paths:
-#     - /logs/app.log
-#   fields:
-#     type: llm-gateway
-#   fields_under_root: true
 
 # ============================== Filebeat modules ==============================
 
@@ -108,26 +126,19 @@ setup.template.settings:
   index.number_of_shards: 1
 
 
-# ================================== General ===================================
-
-
-# ================================= Dashboards =================================
 
 # =================================== Kibana ===================================
 
 setup.kibana:
 
 
-# =============================== Elastic Cloud ================================
-
-
-# ================================== Outputs ===================================
 
 
 # ------------------------------ Logstash Output -------------------------------
 output.logstash:
   # The Logstash hosts
-  hosts: ["10.1.1.138:5044"]
+  # hosts: ["10.1.1.138:5044"]
+  hosts: ["212.23.202.138:5044"]
 
 
 # ================================= Processors =================================
@@ -138,13 +149,3 @@ processors:
   - add_docker_metadata: ~
   - add_kubernetes_metadata: ~
 
-# ================================== Logging ===================================
-
-
-# ============================= X-Pack Monitoring ==============================
-
-
-# ============================== Instrumentation ===============================
-
-
-# ================================= Migration ==================================
